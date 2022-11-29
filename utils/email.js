@@ -39,6 +39,7 @@ module.exports = class Email {
     });
   }
 
+  //
   async send(template, subject) {
     // 1) Render HTML based on a pug template
     const html = pug.renderFile(
