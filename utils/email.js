@@ -21,7 +21,7 @@ module.exports = class Email {
         port: 25,
         auth: {
           user: 'apikey',
-          pass: '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',
+          pass: process.env.SENDGRID_API_KEY,
         },
         tls: {
           rejectUnauthorized: false,
