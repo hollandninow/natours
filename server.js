@@ -38,3 +38,11 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
   });
 });
+
+// Heroku shuts down apps every 24 hr by sending a 'SIGTERM'. The code below allows the app to shut down gracefully when receiving a SIGTERM.
+process.on('SIGTERM', () => {
+  console.log('👋 SIGTERM RECEIVED. Shutting down gracefully.');
+  server.close(() => {
+    console.log('💥 Process terminated!');
+  });
+});
