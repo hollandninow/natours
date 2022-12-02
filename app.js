@@ -28,7 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL MIDDLEWARES
 // Implement CORS
-app.use(cors()); // Access-Control-Allow-Origin *
+// app.use(cors()); // Access-Control-Allow-Origin *
 // if api is on api.natours.com, front-end @ natours.com, then use like this:
 // app.use(
 //   cors({
