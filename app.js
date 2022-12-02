@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      'script-src-attr': ['self', 'https://js.stripe.com/v3/'],
+      'script-src-attr': ['https://js.stripe.com/v3/'],
     },
   })
 );
