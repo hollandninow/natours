@@ -51,12 +51,12 @@ app.use(
       defaultSrc: [
         "'self'",
         'https://js.stripe.com/v3/',
-        'https://api.mapbox.com/mapbox-gl-js/v2.10.0/',
+        'https://api.mapbox.com/',
       ],
       scriptSrc: [
         "'self'",
         'https://js.stripe.com/v3/',
-        'https://api.mapbox.com/mapbox-gl-js/v2.10.0/',
+        'https://api.mapbox.com/',
       ],
     },
   })
