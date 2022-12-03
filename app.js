@@ -48,8 +48,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", 'https://js.stripe.com/v3/'],
-      scriptSrc: ["'self'", 'https://js.stripe.com/v3/'],
+      defaultSrc: [
+        "'self'",
+        'https://js.stripe.com/v3/',
+        'https://api.mapbox.com/mapbox-gl-js/v2.10.0/',
+      ],
+      scriptSrc: [
+        "'self'",
+        'https://js.stripe.com/v3/',
+        'https://api.mapbox.com/mapbox-gl-js/v2.10.0/',
+      ],
     },
   })
 );
