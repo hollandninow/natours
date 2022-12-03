@@ -52,11 +52,13 @@ app.use(
         "'self'",
         'https://js.stripe.com/v3/',
         'https://api.mapbox.com/',
+        'https://events.mapbox.com/',
       ],
       scriptSrc: [
         "'self'",
         'https://js.stripe.com/v3/',
         'https://api.mapbox.com/',
+        'https://events.mapbox.com/',
       ],
     },
   })
