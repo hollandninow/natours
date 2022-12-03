@@ -19,6 +19,14 @@ const bookingRouter = require('./routes/bookingRoutes');
 const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 
+const permittedSources = [
+  "'self'",
+  'https://js.stripe.com/v3/',
+  'https://api.mapbox.com/',
+  'https://events.mapbox.com/',
+  'https://hn-natours.herokuapp.com/',
+];
+
 // Start express app
 const app = express();
 
@@ -48,18 +56,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: [
-        "'self'",
-        'https://js.stripe.com/v3/',
-        'https://api.mapbox.com/',
-        'https://events.mapbox.com/',
-      ],
-      scriptSrc: [
-        "'self'",
-        'https://js.stripe.com/v3/',
-        'https://api.mapbox.com/',
-        'https://events.mapbox.com/',
-      ],
+      defaultSrc: permittedSources,
+      scriptSrc: permittedSources,
     },
   })
 );
