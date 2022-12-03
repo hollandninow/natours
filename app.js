@@ -43,15 +43,15 @@ app.options('*', cors()); // allows complex requests (patch, delete, etc., anyth
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
-app.use(helmet());
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'", "'https://js.stripe.com/v3/'"],
-//       scriptSrc: ["'self'", "'https://js.stripe.com/v3/'"],
-//     },
-//   })
-// );
+// app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", "'https://js.stripe.com/'"],
+      scriptSrc: ["'self'", "'https://js.stripe.com/'"],
+    },
+  })
+);
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
