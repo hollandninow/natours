@@ -1,0 +1,51 @@
+extends base
+
+block content
+  main.main
+    .card-container
+
+      each review in reviews
+        .card 
+          .card__header 
+            .card__picture 
+              .card__picture-overlay &nbsp;
+              img.card__picture-img(src=`img/tours/${review.tour.imageCover}` alt=`${review.tour.name}`)
+            h3.heading-tertiary
+              span= review.tour.name
+
+          .card__details 
+            //- h4.card__sub-heading= `${review.tour.difficulty} ${review.tour.duration}-day tour`
+            h4.card__sub-heading= `Your review:`
+            p.card__text= review.review
+          //-   .card__data 
+          //-     svg.card__icon 
+          //-       use(xlink:href='img/icons.svg#icon-map-pin')
+          //-     span= tour.startLocation.description
+          //-   .card__data 
+          //-     svg.card__icon 
+          //-       use(xlink:href='img/icons.svg#icon-calendar')
+          //-     span= new Intl.DateTimeFormat('en-US', {month: 'long', year:'numeric'}).format(tour.startDates[0])
+          //-   .card__data 
+          //-     svg.card__icon 
+          //-       use(xlink:href='img/icons.svg#icon-flag')
+          //-     span= `${tour.locations.length} stops`
+          //-   .card__data 
+          //-     svg.card__icon 
+          //-       use(xlink:href='img/icons.svg#icon-user')
+          //-     span= `${tour.maxGroupSize} people`
+
+          .card__footer
+            p 
+              span.card__footer-value= `Your rating:`
+              | 
+              .reviews__rating
+                each star in [1,2,3,4,5]
+                  svg.reviews__star(class=`reviews__star--${review.rating >= star ? 'active' : 'inactive'}`)
+                    use(xlink:href='/img/icons.svg#icon-star')
+            p.card__ratings 
+              span.card__footer-value= `Review date: `
+            p.card__ratings
+              span.card__footer-text= `${new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric', year:'numeric'}).format(review.createdAt)}`
+              | 
+              span.card__footer-text= `rating`
+            a.btn.btn--green.btn--small.btn--edit(href=`#`) Edit Review

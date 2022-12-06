@@ -1189,6 +1189,11 @@ body {
   align-self: center;
 }
 
+.card__footer .btn--edit {
+  grid-row: 3;
+  translate: 50%;
+}
+
 .error {
   position: absolute;
   top: 35%;

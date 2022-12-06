@@ -1,10 +1,10 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const SendmailTransport = require('nodemailer/lib/sendmail-transport');
 const Tour = require('../models/tourModel');
 const Booking = require('../models/bookingModel');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
-const SendmailTransport = require('nodemailer/lib/sendmail-transport');
 // const AppError = require('../utils/appError');
 
 exports.getAllBookings = factory.getAll(Booking);
