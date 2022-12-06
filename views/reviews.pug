@@ -14,25 +14,8 @@ block content
               span= review.tour.name
 
           .card__details 
-            //- h4.card__sub-heading= `${review.tour.difficulty} ${review.tour.duration}-day tour`
             h4.card__sub-heading= `Your review:`
-            p.card__text= review.review
-          //-   .card__data 
-          //-     svg.card__icon 
-          //-       use(xlink:href='img/icons.svg#icon-map-pin')
-          //-     span= tour.startLocation.description
-          //-   .card__data 
-          //-     svg.card__icon 
-          //-       use(xlink:href='img/icons.svg#icon-calendar')
-          //-     span= new Intl.DateTimeFormat('en-US', {month: 'long', year:'numeric'}).format(tour.startDates[0])
-          //-   .card__data 
-          //-     svg.card__icon 
-          //-       use(xlink:href='img/icons.svg#icon-flag')
-          //-     span= `${tour.locations.length} stops`
-          //-   .card__data 
-          //-     svg.card__icon 
-          //-       use(xlink:href='img/icons.svg#icon-user')
-          //-     span= `${tour.maxGroupSize} people`
+            p.card__text.review= review.review
 
           .card__footer
             p 
@@ -46,6 +29,4 @@ block content
               span.card__footer-value= `Review date: `
             p.card__ratings
               span.card__footer-text= `${new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric', year:'numeric'}).format(review.createdAt)}`
-              | 
-              span.card__footer-text= `rating`
             a.btn.btn--green.btn--small.btn--edit(href=`#`) Edit Review

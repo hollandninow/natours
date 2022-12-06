@@ -1144,6 +1144,11 @@ body {
   margin-top: -1rem;
   margin-bottom: 0.75rem;
 }
+
+.card__text.review {
+  font-style: normal;
+}
+
 .card__data {
   font-size: 1.3rem;
   display: -webkit-box;
