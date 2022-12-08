@@ -6,6 +6,7 @@ import { updateSettings } from './updateSettings';
 import { displayMap } from './mapbox';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
+import { editReview } from './editReview';
 
 // DOM ElEMENTS
 const mapBox = document.getElementById('map');
@@ -15,6 +16,10 @@ const signupForm = document.querySelector('.form--signup');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+const editReviewBtnArray = document.querySelectorAll('.btn--edit');
+const closeModalBtnArray = document.querySelectorAll('.close-modal');
+const reviewFormModalArray = document.querySelectorAll('.review-form__modal');
+const editReviewFormArray = document.querySelectorAll('.form--edit-review');
 
 // DELEGATION
 if (mapBox) {
@@ -88,3 +93,43 @@ if (bookBtn) {
 
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) showAlert('success', alertMessage, 15);
+
+if (editReviewBtnArray) {
+  editReviewBtnArray.forEach((btn) =>
+    btn.addEventListener('click', (e) => {
+      const editReviewModal = document.getElementById(`${btn.id}-modal`);
+      editReviewModal.classList.remove('hidden');
+    })
+  );
+}
+
+if (closeModalBtnArray) {
+  closeModalBtnArray.forEach((btn) =>
+    btn.addEventListener('click', (e) => {
+      btn.parentElement.parentElement.classList.add('hidden');
+    })
+  );
+}
+
+if (reviewFormModalArray) {
+  reviewFormModalArray.forEach((el) =>
+    el.addEventListener('click', (e) => {
+      if (e.target === el) {
+        el.classList.add('hidden');
+      }
+    })
+  );
+}
+
+if (editReviewFormArray) {
+  editReviewFormArray.forEach((el) =>
+    el.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = el.parentElement.id.split('-')[0];
+      const rating = document.getElementById(`${id}-rating`).value;
+      const review = document.getElementById(`${id}-review`).value;
+
+      await editReview(rating, review, id);
+    })
+  );
+}

@@ -6,6 +6,21 @@ block content
 
       each review in reviews
         .card 
+          div(id= `${review.id}-modal`).review-form__modal.hidden
+            form.form.form--edit-review
+              span.close-modal &times;
+              h2.heading-secondary.ma-bt-lg= `Edit review: ${review.tour.name}!`
+              .form__group
+                label.form__label(for='review') Your Review:
+                textarea#review-dummy.form__input.form__input--hidden
+                textarea.form__input.form__input--review(name='review', id=`${review.id}-review`)= review.review
+      
+              .form__group.reviews__rating
+                label.form__label(for='review') Your Rating: 
+                input.form__input.form__input--rating(type='number', id=`${review.id}-rating` placeholder='Enter a value between 1 and 5' value=`${review.rating}`, required)
+              .form__group
+                button.btn.btn--green Submit Changes
+
           .card__header 
             .card__picture 
               .card__picture-overlay &nbsp;
@@ -26,7 +41,8 @@ block content
                   svg.reviews__star(class=`reviews__star--${review.rating >= star ? 'active' : 'inactive'}`)
                     use(xlink:href='/img/icons.svg#icon-star')
             p.card__ratings 
-              span.card__footer-value= `Review date: `
+              span.card__footer-value Review date:
             p.card__ratings
               span.card__footer-text= `${new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric', year:'numeric'}).format(review.createdAt)}`
-            a.btn.btn--green.btn--small.btn--edit(href=`#`) Edit Review
+            a(id= `${review.id}`).btn.btn--green.btn--small.btn--edit Edit Review
+
