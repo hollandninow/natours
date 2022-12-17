@@ -58,6 +58,12 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
   next();
 });
 
+exports.getTourIdFromSlug = catchAsync(async (req, res, next) => {
+  const tour = await Tour.find({ slug: req.params.slug });
+
+  res.locals.tourId = tour.id;
+});
+
 exports.getAllTours = factory.getAll(Tour);
 exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.createTour = factory.createOne(Tour);

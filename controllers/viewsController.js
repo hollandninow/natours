@@ -93,7 +93,7 @@ exports.getMyReviews = catchAsync(async (req, res, next) => {
   //   console.log('review series 1', tour.review);
   // });
 
-  console.log('reviews', reviews);
+  // console.log('reviews', reviews);
   // console.log('tours', tours);
 
   res.status(200).render('reviews', {

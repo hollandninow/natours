@@ -104,3 +104,21 @@ exports.webhookCheckout = catchAsync(async (req, res, next) => {
 
   res.status(200).json({ received: true });
 });
+
+exports.userHasBookedTour = catchAsync(async (req, res, next) => {
+  const tour = await Tour.findOne({ slug: req.params.slug });
+  const tourId = tour.id;
+
+  const booking = await Booking.findOne({
+    user: res.locals.user.id,
+    tour: tourId,
+  });
+
+  if (booking) {
+    res.locals.isBooked = true;
+
+    return next();
+  }
+
+  next();
+});

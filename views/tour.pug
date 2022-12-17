@@ -80,10 +80,19 @@ block content
       img.cta__img.cta__img--1(src=`/img/tours/${tour.images[1]}`, alt='Tour picture')
       img.cta__img.cta__img--2(src=`/img/tours/${tour.images[2]}`, alt='Tour picture')
       .cta__content
-        h2.heading-secondary What are you waiting for?
-        p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
+        if isBooked 
+          h2.heading-secondary Leave a review!
+          p.cta__text= `Tell fellow Natours adventurers what you thought of the tour by leaving a review!`
 
-        if user
-          button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
+          if user
+            button.btn.btn--green.span-all-rows#leave-review(data-tour-id=`${tour.id}`) Review this tour!
+          else
+            a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
         else
-          a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
+          h2.heading-secondary What are you waiting for?
+          p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
+
+          if user
+            button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
+          else
+            a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
