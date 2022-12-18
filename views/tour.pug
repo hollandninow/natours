@@ -108,7 +108,7 @@ block content
 
       .form__group.reviews__rating
         label.form__label(for='review') Your Rating: 
-        input.form__input.form__input--rating(type='number', id=`review-rating` placeholder='Between 1-5'  required)
+        input.form__input.form__input--rating(type='number' step='.5' min='1' max='5' id=`review-rating` placeholder='Between 1-5'  required)
 
       .form__group
         button.btn.btn--green Submit Review
