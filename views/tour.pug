@@ -96,3 +96,19 @@ block content
             button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
           else
             a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
+
+  div(id= 'review-modal').review-form__modal.hidden
+    form.form.form--create-review(data-tour-id=`${tour.id}`)
+      span.close-modal &times;
+      h2.heading-secondary.ma-bt-lg= `Create review: ${tour.name}!`
+      .form__group
+        label.form__label(for='review') Your Review:
+        textarea#review-dummy.form__input.form__input--hidden
+        textarea.form__input.form__input--review(name='review', id=`review-content`, placeholder='Type your review here...')
+
+      .form__group.reviews__rating
+        label.form__label(for='review') Your Rating: 
+        input.form__input.form__input--rating(type='number', id=`review-rating` placeholder='Between 1-5'  required)
+
+      .form__group
+        button.btn.btn--green Submit Review

@@ -1348,7 +1348,8 @@ body {
   background-color: rgb(0, 0, 0, 0.3);
 }
 
-.form--edit-review {
+.form--edit-review,
+.form--create-review {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 5rem;

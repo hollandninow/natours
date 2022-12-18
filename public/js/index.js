@@ -7,6 +7,7 @@ import { displayMap } from './mapbox';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
 import { editReview } from './editReview';
+import { submitReview } from './submitReview';
 
 // DOM ElEMENTS
 const mapBox = document.getElementById('map');
@@ -16,10 +17,18 @@ const signupForm = document.querySelector('.form--signup');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+
+// Elements for edit review form
 const editReviewBtnArray = document.querySelectorAll('.btn--edit');
 const closeModalBtnArray = document.querySelectorAll('.close-modal');
 const reviewFormModalArray = document.querySelectorAll('.review-form__modal');
 const editReviewFormArray = document.querySelectorAll('.form--edit-review');
+
+// Elements for create review form
+const createReviewBtn = document.getElementById('leave-review');
+const closeModalBtn = document.querySelector('.close-modal');
+const reviewFormModal = document.querySelector('.review-form__modal');
+const createReviewForm = document.querySelector('.form--create-review');
 
 // DELEGATION
 if (mapBox) {
@@ -94,6 +103,7 @@ if (bookBtn) {
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) showAlert('success', alertMessage, 15);
 
+// For My Reviews page
 if (editReviewBtnArray) {
   editReviewBtnArray.forEach((btn) =>
     btn.addEventListener('click', (e) => {
@@ -132,4 +142,36 @@ if (editReviewFormArray) {
       await editReview(rating, review, id);
     })
   );
+}
+
+// Add review on Tour page
+if (createReviewBtn) {
+  createReviewBtn.addEventListener('click', (e) => {
+    reviewFormModal.classList.remove('hidden');
+  });
+}
+
+if (closeModalBtn) {
+  closeModalBtn.addEventListener('click', (e) => {
+    closeModalBtn.parentElement.parentElement.classList.add('hidden');
+  });
+}
+
+if (reviewFormModal) {
+  reviewFormModal.addEventListener('click', (e) => {
+    if (e.target === reviewFormModal) {
+      reviewFormModal.classList.add('hidden');
+    }
+  });
+}
+
+if (createReviewForm) {
+  createReviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const rating = document.getElementById('review-rating').value;
+    const review = document.getElementById('review-content').value;
+    const { tourId } = e.target.dataset;
+
+    await submitReview(rating, review, tourId);
+  });
 }
