@@ -58,6 +58,7 @@ app.use(
     directives: {
       defaultSrc: permittedSources,
       scriptSrc: permittedSources,
+      workerSrc: ["'self'", 'blob:'],
     },
   })
 );
