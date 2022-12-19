@@ -109,6 +109,8 @@ exports.userHasBookedTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findOne({ slug: req.params.slug });
   const tourId = tour.id;
 
+  if (!res.locals.user) return next();
+
   const booking = await Booking.findOne({
     user: res.locals.user.id,
     tour: tourId,
